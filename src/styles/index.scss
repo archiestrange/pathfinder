@@ -1,0 +1,75 @@
+#pathfinder-container{
+    margin: auto;
+    width: 50%;
+    border: 1px solid #aeaeae;
+    border-radius: 3px;
+    font-family: arial;
+    background-color: #fafafa;
+
+    > #header {
+        font-style: 20px;
+        border-bottom: 1px solid #aeaeae;
+        padding: 15px;
+    }
+
+    > #body {
+
+        padding: 15px;
+
+        > .route-picker-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+            
+            > .route-picker {
+                width: 100px;
+                border-radius: 3px;
+                margin: 0 10px;
+            }
+        }
+
+        > #calculate-button-container {
+            display: flex;
+            justify-content: center;
+
+            > button {
+                width: 220px;
+                height: 35px;
+                font-size: 16px;
+                font-weight: 500;
+            }
+        }
+
+        .warning-text{
+            text-align: center;
+            color: orange;
+        }
+
+        > #result-field-container {
+            margin-top: 20px;
+            max-height: 175px;
+            overflow: auto;
+            font-size: 14px;
+            padding: 10px;
+            background-color: white;
+            border: 1px solid #aeaeae;
+            border-radius: 3px;
+
+            > .centered-text{
+                text-align: center;
+            }
+
+            & :first-child {
+                font-weight: 600;
+            }
+        
+            &::-webkit-scrollbar {
+                width: 8px;
+            }
+            &::-webkit-scrollbar-thumb {
+                background: #aeaeae;
+                border-radius: 5px; 
+            }
+        }
+    }
+}
