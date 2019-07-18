@@ -11,7 +11,7 @@ export enum Destination {
 
 export interface Route { destination: Destination; distance: number; }
 
-interface UsedRoute { start: Destination, end: Destination }
+export interface UsedRoute { start: Destination, end: Destination }
 
 export interface CalculationItem {
     current: Destination;

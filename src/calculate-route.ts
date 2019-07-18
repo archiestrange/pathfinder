@@ -1,5 +1,5 @@
-import { routesAvailable } from "./get-available-routes";
-import { Destination, CalculationItem } from "./types";
+import { Destination, CalculationItem, UsedRoute } from "./types";
+import { getConnectingRoutes } from "./get-connection-routes";
 
 export function Calculate(startSite: Destination, endSite: Destination): CalculationItem[] {
 
@@ -24,27 +24,24 @@ export function Calculate(startSite: Destination, endSite: Destination): Calcula
             }
 
             // Find connecting routes from this route's destination that havn;t already been visited
-            const possibleRoutes = routesAvailable(route.current).filter(ar => {
-                const usedStarts = route.usedRoutes.map(r => r.start);
-                const usedEnds = route.usedRoutes.map(r => r.end);
-                return ar.destination !== startSite && ((!usedStarts.includes(ar.destination) || !usedEnds.includes(ar.destination)));
-            });
+            const possibleRoutes = getConnectingRoutes(route, startSite);
 
             // Push each new possible route into 'routes' array for further iteration
             for (const possRoute of possibleRoutes) {
-                const usedRoute = { start: route.current, end: possRoute.destination };
-                routes.push({
+                const usedRoute: UsedRoute = { start: route.current, end: possRoute.destination };
+                const newRoute: CalculationItem = {
                     current: possRoute.destination,
                     used: false,
                     usedRoutes: [ ...route.usedRoutes, usedRoute ],
                     total: route.total + possRoute.distance,
                     foundDestination: possRoute.destination === endSite ? true : false
-                });
+                };
+                routes.push(newRoute);
             }
             
             // Set this route as used so it wont be used in iteration again
             routes[idx] = { ...routes[idx], used: true };
-        })
+        });
 
     }
 
