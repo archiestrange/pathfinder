@@ -8,6 +8,7 @@ In your terminal run: <br />
 - npm i
 - npm run start
 - (should auto do this) open chrome to http://localhost:3000/
+- (optional) npm test
 
 # Rundown
 This is written in react/typescript and the project template was built using CRA. <br />
